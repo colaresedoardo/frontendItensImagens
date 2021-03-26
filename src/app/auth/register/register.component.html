@@ -1,0 +1,38 @@
+<mat-card fxLayout="column"  fxLayoutAlign="space-evenly center" class="conteudo">
+        <section   >
+            <mat-card>
+            <form [formGroup]="formRegister" (ngSubmit)="save()" fxLayout="column" #form="ngForm">
+               <h5>Registrar Login</h5>
+               
+                <input type="hidden" formControlName="_id">
+                <mat-form-field>
+                    <input matInput placeholder="Nome" formControlName="nome" >
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Login" formControlName="login" >
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="email" placeholder="Email" formControlName="email" >
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" placeholder="password" formControlName="password1" >
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput  type="password" placeholder="password" formControlName="password2" >
+                </mat-form-field>
+              
+                <div fxLayout="row" fxLayoutAlign="end end" >
+                    <button mat-button color="primary" type="submit" [disabled]="!formRegister.valid">
+                      <mat-icon>done</mat-icon>&nbsp;Register
+                    </button>
+                </div>
+            </form>
+        </mat-card>
+    </section>
+    
+</mat-card>
+  
+
+
+
+

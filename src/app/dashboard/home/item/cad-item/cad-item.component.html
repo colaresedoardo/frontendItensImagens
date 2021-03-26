@@ -1,0 +1,93 @@
+
+ 
+    <mat-card fxLayout="column"  fxLayoutAlign="space-evenly center" class="conteudo">
+        <section   >
+            <mat-card>
+            <form [formGroup]="itemForm" (ngSubmit)="save()" fxLayout="column" #form="ngForm">
+               <h5>Cadastro de item</h5>
+               
+                <input type="hidden" formControlName="_id">
+                <mat-form-field>
+                    <input matInput placeholder="Titulo" formControlName="titulo" >
+                </mat-form-field>
+               
+                <mat-form-field>
+                    <input matInput placeholder="Link externo" formControlName="linkResource" >
+                </mat-form-field>
+                <div *ngFor="let item of listaItemSelect" >
+                    
+                    <p>{{item?.titulo}}</p>
+                </div>
+                <div *ngIf="imagem?.url">
+                    <p>Imagem selecionada</p>
+                    <img src="{{imagem?.url}}" alt="" style="height:50px;width:50px;">
+                </div>
+
+                <div>
+                    <button mat-button color="primary" type="submit" [disabled]="!itemForm.valid" >Save</button>
+                    <button mat-button color="warn" type="reset"  (click)="resetForm()">Cancel</button>
+                </div>
+           
+            </form>
+        </mat-card>
+        </section>
+        <section class="lista"  fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="start" fxLayoutAlign.lt-sm="center start">
+            <div>
+                <mat-card><h5>Lista de Items</h5></mat-card>
+                <mat-card>
+                    <!-- <ng-container *ngIf="Items?.length > 0; else empty "> -->
+<!--                     
+                        <mat-selection-list [(ngModel)]="listaItemSelect" (ngModelChange)="onNgModelChange($event)">
+                            <ng-template  *ngFor="let item of Items" >
+                            <mat-list-option [value]="item">
+                                <div  style="display: inline-block;">
+                                    {{item.titulo}}
+                                    <img src="{{item.imagem?.url}}" alt="carro" style="width: 40px;height: 40px;">
+                                    <button mat-icon-button color="accent" (click)="delete(item)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="primary" (click)="edit(item)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+
+                                </div>
+                            </mat-list-option>
+                            </ng-template>
+                            
+                        </mat-selection-list>
+                    </ng-container> -->
+                
+                    <mat-list>
+                        <h3 mat-subheader>Items</h3>
+                        <mat-list-item *ngFor="let item of Items">
+                            <mat-icon mat-list-icon>folder</mat-icon>
+                            <h4 mat-line> {{item.titulo}}</h4>
+                           
+                           
+                            
+                            <button mat-icon-button color="accent" (click)="delete(item)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="edit(item)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="primary" (click)="addItemList(item)">
+                                <mat-icon>note_add</mat-icon>
+                            </button>
+                        </mat-list-item>
+                    </mat-list> 
+                 
+                </mat-card>
+            </div>
+            <ng-template #empty>
+                <span><em>Está vazinho</em></span>
+            </ng-template>
+
+            <app-imagem style="padding-left: 20px;" (imagemSelecionada)="imagemSelecionada($event)"></app-imagem>
+    </section>
+    </mat-card>
+  
+
+
+
+

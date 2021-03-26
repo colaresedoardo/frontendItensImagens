@@ -1,0 +1,55 @@
+<mat-card >
+    <mat-card-title>
+      Formulário para imagens
+    </mat-card-title>
+    <mat-card-content>
+        <form  [formGroup]="formImg" (ngSubmit)="submit()" #form>
+        <div >             
+          <input #file type="file" name="profile" (change)="onFileSelect($event)" />
+          
+          <div fxLayout="row" fxLayoutAlign="end end">
+                <button mat-button color="primary" type="submit" >Save</button>
+              
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end end">
+            <button mat-button color="accent" type="reset" (click)="resetarForm()" >Cancel</button>
+          
+      </div>
+        </div>
+    </form>
+    <mat-selection-list #imagems [multiple]="false" >
+        <mat-list-option *ngFor="let img of imagens" [value]="img" fxLayout="column" (click)="SelecionandoImagem(img)" >
+          <div  style="display: inline-block;">
+              {{img.originalname}}
+              <!-- <img [src]="img.url | safe" style="width: 30px;height: 30px;" /> -->
+            <button mat-icon-button color="accent" (click)="delete(img)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="edit(img)">
+              <mat-icon>edit</mat-icon>
+          </button>
+          </div>
+        </mat-list-option>
+     
+      </mat-selection-list>
+      
+      <p>
+        <!-- Option selected: {{imagems.selectedOptions.selected[0]?.value}} -->
+      </p>
+
+        <!-- <mat-list>
+            <h3 mat-subheader>Imagens</h3>
+            <mat-list-item *ngFor="let img of imagens">
+                <mat-icon mat-list-icon>folder</mat-icon>
+                <h4 mat-line>{{img.originalname}}</h4>
+                
+                <img [src]="img.url | safe" />
+         
+               
+               
+             
+              
+            </mat-list-item>
+        </mat-list> -->
+    </mat-card-content>
+</mat-card>

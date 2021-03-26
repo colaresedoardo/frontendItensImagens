@@ -1,0 +1,27 @@
+<section class="container">
+<!-- <div *ngIf=" (Items$ | async) as items; else erro"> -->
+<div *ngIf="items; else erro">
+    <mat-grid-list  [cols]="cols" rowHeight="" gutterSize="10px" >
+        <mat-grid-tile class="item o-unset mat-typography" *ngFor="let item of items; let i=index">
+            <app-item  [item]="item"> </app-item>
+        </mat-grid-tile>
+        
+    </mat-grid-list>
+</div>
+
+</section>
+
+
+
+<ng-template #erro>
+  <h4>Vazio</h4>
+</ng-template>
+
+
+<!-- 
+
+    Link úteis
+http://www.macoratti.net/17/07/ang2_pdtcomp1.htm
+https://ng-bootstrap.github.io/#/components/popover/examples
+
+ -->
