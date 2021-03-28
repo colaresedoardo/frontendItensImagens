@@ -98,6 +98,8 @@ export class HomeComponent implements OnInit {
     // trocando de aba
     this.tab.selectedIndex=1
     console.log(item.titulo)
+    console.log("item selecionado")
+    console.log(item)
     this.tituloItem =item.titulo
     this.combinarItemImage(item.item)
 

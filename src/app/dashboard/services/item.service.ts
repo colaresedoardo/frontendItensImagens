@@ -18,7 +18,7 @@ export class ItemService {
   constructor(private http:HttpClient, private imagemService:ImagemService) { }
 
   get():Observable<Item[]>{
-    if(!this.loaded){
+  
       combineLatest([this.http.get<Item[]>(this.url) , this.imagemService.get()]).pipe(
         filter(([item, imagem])=>{
           return item !=null  && imagem !=null
@@ -46,8 +46,8 @@ export class ItemService {
         this.itemsSubject$.next(data)
       })
 
-      this.loaded =true
-    }
+    
+    
     return this.itemsSubject$.asObservable()
   }
 

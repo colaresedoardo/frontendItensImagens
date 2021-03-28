@@ -53,12 +53,21 @@ export class CadItemComponent implements OnInit {
    
   
     let dados = this.itemForm.value
+
       console.log(dados)
   
       if(dados._id != null){ 
       
-        this.itemService.update(dados).subscribe()
-        this.notify("Alterado com sucesso")
+        this.itemService.update(dados).subscribe(
+          (items)=>{
+            this.notify("Alterado com sucesso")
+          },
+          (err)=>{
+            this.notify("erro não pode cadastrar item sobre itens que já tem subitem ")
+            this.listaItemSelect.pop()
+          }
+        )
+      
       }else{ 
         console.log("aqui lista de items"+this.listaItemSelect.length)
       console.log("Imagem  "+this.imagem?._id)
@@ -111,7 +120,7 @@ export class CadItemComponent implements OnInit {
   }
  async addItemList(item:Item){
     console.log(item)
-    this.listaItemSelect.pop()
+    // this.listaItemSelect.pop()
     this.listaItemSelect.push(item)
   }
 
@@ -119,6 +128,7 @@ export class CadItemComponent implements OnInit {
     // console.log("antes "+ JSON.stringify( this.itemForm.getRawValue))
     this.itemForm.reset()
     this.imagem = null
+    this.listaItemSelect = []
 
     // console.log("depois "+ this.itemForm.)
   }
