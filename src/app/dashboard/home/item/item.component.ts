@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { Item } from '../../models/item';
+import { ItemService } from '../../services/item.service';
 
 @Component({
   selector: 'app-item',
@@ -9,10 +12,12 @@ import { Item } from '../../models/item';
 export class ItemComponent implements OnInit {
 
   @Input() item:Item
+  @Input() habilitarLink:boolean =true
 
   constructor() { }
 
   ngOnInit(): void {
+ 
   }
 
 }

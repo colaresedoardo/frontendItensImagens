@@ -30,7 +30,16 @@ export class ItemService {
           //      i.imagem = img
           //    }
           // }
-        
+      
+          // let i = item.findIndex(i => i.imagem == imagem.)
+          // console.log("imprimindo o i "+ i)
+          // if(i>=0){
+          //   items[i] = item
+          // }
+          console.log("dentro do map")
+           console.log(item)
+          // console.log("imagem")
+          // console.log(imagem)
           return item
         })
       ).subscribe(data=>{
@@ -48,26 +57,22 @@ export class ItemService {
     let idItems:string[] =  itemRecurso.item.map(item=>`${item?._id}` )
     let idImagem = (itemRecurso.imagem as Imagem)._id   
   
-    return this.http.post<Item>(this.url,{titulo:itemRecurso.titulo, linkResource: itemRecurso.linkResource,
+    return this.http.post<any>(this.url,{titulo:itemRecurso.titulo, linkResource: itemRecurso.linkResource,
        imagem:idImagem,item:idItems}). pipe(
 
        tap( (i)=>{
 
 
 
-      
-        
+       console.log("aqui o retorno ")
+       console.log(i)
         
         let imagem:Imagem
        
         let items = this.itemsSubject$.getValue()
         // if(items.length > 0){
           this.imagemService.get().subscribe((img)=>{ this.imagem =img } )
-          // console.log("Valores anteriores "+JSON.stringify(items))
-          // console.log("ids imagens "+ this.imagem.map(i=>i._id))
-          // console.log("id da imagem no item "+i.imagem)
-        
-         // console.log("item id imagem "+items.map(i=>i.imagem._id))
+         
          let img = this.imagem.findIndex(img=> {
              return img._id ===idImagem
           

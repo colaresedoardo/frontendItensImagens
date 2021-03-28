@@ -2,13 +2,24 @@
   
 
 <img class="tile-image"  src="{{item.imagem?.url }}" alt="{{item.titulo}}" >
-<a  href="{{item.linkResource}}" target="_blank">
-<mat-grid-tile-footer>
+<ng-container *ngIf="habilitarLink; else template">
+      <a  href="{{item.linkResource}}" target="_blank">
+      <mat-grid-tile-footer>
+           
+            {{item.titulo}}
 
-      {{item.titulo}}
-
-</mat-grid-tile-footer>
-        
-</a>
-
+      </mat-grid-tile-footer>
+            
+      </a>
+</ng-container>
+<ng-template #template >
+      <!-- <a  href="{{item.linkResource}}" target="_blank"> -->
+            <mat-grid-tile-footer>
+               
+                  {{item.titulo}}
+      
+            </mat-grid-tile-footer>
+                  
+            <!-- </a>  -->
+</ng-template>
 <!-- </section> -->

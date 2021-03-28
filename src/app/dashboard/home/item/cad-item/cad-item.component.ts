@@ -21,6 +21,8 @@ export class CadItemComponent implements OnInit {
     linkResource:[''],
     imagem:[null],
     item:[null],
+    subitem:[null],
+    categoria:[null],
     createdAt:[''],
     __v:['']
  
@@ -48,10 +50,10 @@ export class CadItemComponent implements OnInit {
     });
    
 
-    console.log("Printando erros")
+   
   
     let dados = this.itemForm.value
-    console.log(dados)
+      console.log(dados)
   
       if(dados._id != null){ 
       

@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate{
     ): Observable<boolean> {
       return this.authService.isAuthenticated().pipe(
         tap(b=>{
+          console.log("entrando no guard")
           if(!b){
             this.route.navigateByUrl('/auth/login')
           }

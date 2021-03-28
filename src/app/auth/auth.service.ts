@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, pipe } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Usuario } from './usuario';
 
 @Injectable({providedIn:'root'})
 export class AuthService {
-  readonly url ='http://localhost:5000/auth'
+  readonly url =`${environment.API}/auth`
   
   usuarioSubject$:BehaviorSubject<Usuario> = new BehaviorSubject<Usuario>(null)
   usuarioLogado$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)

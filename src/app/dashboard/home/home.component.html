@@ -1,13 +1,63 @@
 <section class="container">
 <!-- <div *ngIf=" (Items$ | async) as items; else erro"> -->
-<div *ngIf="items; else erro">
-    <mat-grid-list  [cols]="cols" rowHeight="" gutterSize="10px" >
-        <mat-grid-tile class="item o-unset mat-typography" *ngFor="let item of items; let i=index">
-            <app-item  [item]="item"> </app-item>
-        </mat-grid-tile>
+    <mat-tab-group #tab dynamicHeight (selectedTabChange)="onTabChanged($event);">
+        <mat-tab label="Items">
+            <div *ngIf="items; else erro">
+                <mat-grid-list  [cols]="cols" rowHeight="" gutterSize="10px" >
+            
+                    <ng-container  *ngFor="let item of items; let i=index">
+            
+            
+                      <mat-grid-tile class="item o-unset mat-typography" *ngIf="item.categoria == true" >
+                      
+                            <app-item (click)="selacionar(item)" [habilitarLink]="false"  [item]="item" > </app-item>
+                     
+                      
+                            
+                    
+                      </mat-grid-tile>
+                    
+                        <mat-grid-tile class="item o-unset mat-typography" *ngIf="(item.subitem==false && item.categoria==false )" >
+                      
+                              <app-item   [item]="item" > </app-item>
+                        
+                        
+                              
+                      
+                        </mat-grid-tile>
+                   
+                    
+                </ng-container>
+            
+                </mat-grid-list>
+            
+                <button (click)="atualItems()">atual</button>
+            </div>
+        </mat-tab>
+
+  
+
+        <mat-tab label="{{tituloItem}} ">
         
-    </mat-grid-list>
-</div>
+            <!-- <div *ngIf="sublista.length >=0; else erro"> -->
+                <mat-grid-list  [cols]="cols" rowHeight="" gutterSize="10px" >
+            
+                    <ng-container  *ngFor="let item of sublista;let i=index">
+                      <mat-grid-tile class="item o-unset mat-typography"  >
+                             
+                        <app-item  [item]="item" > </app-item>
+                            
+                    
+                      </mat-grid-tile>
+                    </ng-container>
+            
+                </mat-grid-list>
+            
+                
+            <!-- </div> -->
+        </mat-tab>
+      </mat-tab-group>
+
 
 </section>
 
@@ -19,7 +69,8 @@
 
 
 <!-- 
-
+     *ngFor="let item of items; let i=index"
+ item.item.length > 0
     Link úteis
 http://www.macoratti.net/17/07/ang2_pdtcomp1.htm
 https://ng-bootstrap.github.io/#/components/popover/examples
