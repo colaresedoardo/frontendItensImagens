@@ -29,10 +29,10 @@ export class HomeComponent implements OnInit {
 //tamanho de tela
   gridByBreakpoint = {
     xl: 5,
-    lg: 3,
+    lg: 4,
     md: 3,
     sm: 2,
-    xs: 1
+    xs: 2
   }
   constructor(private breakpointObserver: BreakpointObserver, private itemsService:ItemService, private imagemService:ImagemService) { 
     this.breakpointObserver.observe([Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 import { Usuario } from './auth/usuario';
-import { ItemService } from './dashboard/services/item.service';
+
 
 
 @Component({
@@ -18,11 +18,13 @@ export class AppComponent {
   public user$:Observable<Usuario>
 
   constructor( private router:Router, private authService:AuthService){
-    this.authenticated$= this.authService.isAuthenticated()
-    this.user$ = this.authService.getUser()
+   
     
   }
-
+  ngOnInit(){
+    this.authenticated$= this.authService.isAuthenticated()
+    this.user$ = this.authService.getUser()
+  }
   logout(){
     this.authService.logout()
     this.router.navigateByUrl('/auth/login')

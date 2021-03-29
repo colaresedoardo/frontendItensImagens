@@ -1,52 +1,77 @@
-<mat-toolbar style="background-color: green;">
-  IFSC Imagem
-  <span fxFlex></span>
-  <div>
-    <!-- <button *ngIf="(authenticated$ | async)">
-      <span>{{(user$ | async).nome}}</span>
-    </button> -->
-    <ng-container>
-    <button mat-button routerLink="/auth/login">
-        <mat-icon>input</mat-icon>
-        &nbsp; Login
-      </button> 
-     
-   </ng-container> 
-  
-   <ng-container>
-     
-      <button mat-button routerLink="/site/home">
-        <mat-icon>home</mat-icon>
+<section style="height:100hv">
+    <mat-toolbar style="background-color: green;" fxLayout="row" fxLayoutGap="10px">
+      IFSC Imagem
+      <span fxFlex></span>
+      <div fxShow="true" fxHide.lt-md="true">
+        <!-- <button *ngIf="(authenticated$ | async)">
+          <span>{{(user$ | async).nome}}</span>
+        </button> -->
+        <ng-container>
+        <button mat-button routerLink="/auth/login">
+            <mat-icon>input</mat-icon>
+            &nbsp; Login
+          </button> 
         
-      </button>
-      <ng-container *ngIf="(authenticated$ | async)">
-    
-        <button mat-button routerLink="/site/item" routerLinkActive="mat-accent">
-          <mat-icon>insert_drive_file</mat-icon>
-        </button>
-        <button mat-button routerLink="/site/imagem" routerLinkActive="mat-accent">
-          <mat-icon>add_photo_alternate</mat-icon>
-        </button>
-      </ng-container>
-
-      <button  mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>account_circle</mat-icon>
-      </button> 
-      <mat-divider></mat-divider>
-       <mat-menu #menu="matMenu">
-        <p>{{(user$|async)?.nome}}</p>
-    
-        <button mat-icon-button (click)="logout()" >
-          <mat-icon>exit_to_app</mat-icon>
-        </button> 
-      </mat-menu> 
+      </ng-container> 
       
-   </ng-container>
+      <ng-container>
+        
+          <button mat-button routerLink="/site/home">
+            <mat-icon>home</mat-icon>
+            
+          </button>
+          <ng-container *ngIf="(authenticated$ | async)">
+        
+            <button mat-button routerLink="/site/item" routerLinkActive="mat-accent">
+              <mat-icon>insert_drive_file</mat-icon>
+            </button>
+            <button mat-button routerLink="/site/imagem" routerLinkActive="mat-accent">
+              <mat-icon>add_photo_alternate</mat-icon>
+            </button>
+          </ng-container>
+
+          <button  mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>account_circle</mat-icon>
+          </button> 
+          <mat-divider></mat-divider>
+          <mat-menu #menu="matMenu">
+            <p>{{(user$|async)?.nome}}</p>
+        
+            <button mat-icon-button (click)="logout()" >
+              <mat-icon>exit_to_app</mat-icon>
+            </button> 
+          </mat-menu> 
+          
+      </ng-container>    
+      </div>
+      <div fxShow="true" fxHide.gt-sm="true">
+        <a  (click)="sidenav.toggle()" >Mostrar Menu Lateral</a>
+      </div>
+    </mat-toolbar>
 
 
+    <mat-sidenav-container fxFlexFill>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          
+          <a  routerLink="/site/item"  mat-list-item>
+            <mat-icon>insert_drive_file</mat-icon>
+           inserir item
+          </a>
+          <a  routerLink="/site/home"  mat-list-item>
+            <mat-icon>home</mat-icon>
+            Home
+          </a>
+        
+          <a (click)="sidenav.toggle()" mat-list-item>
+            <mat-icon>close</mat-icon> Close
+          </a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <router-outlet></router-outlet>
+      
+      </mat-sidenav-content>
+    </mat-sidenav-container>
 
-    
-  </div>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+</section>
